@@ -5,6 +5,10 @@
  */
 package br.com.academiage.aplicacao;
 
+import br.com.academiage.util.JpaUtil;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 /**
  *
  * @author david
@@ -16,8 +20,16 @@ public class Dao<T> {
     }
     
     public void salvar(T entidade){
-        EntityManager em = JpaUtil.get
-                
+        EntityManager em = JpaUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
+        tx.begin();
+        
+        em.persist(entidade);
+        
+        tx.commit();
+        
+        em.close();
     }
     
     
