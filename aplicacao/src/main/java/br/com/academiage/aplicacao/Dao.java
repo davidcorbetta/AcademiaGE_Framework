@@ -37,7 +37,9 @@ public class Dao<T> {
         EntityTransaction tx = em.getTransaction();
         
         tx.begin();
-        
+        if(!em.contains(entidade)){
+            entidade = em.merge(entidade);
+        }
         em.remove(entidade);
         
         tx.commit();
