@@ -2,6 +2,8 @@ package br.com.academiage.aplicacao;
 
 import br.com.academiage.entidade.Cliente;
 import br.com.academiage.util.JpaUtil;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,13 +34,21 @@ public class App
                      System.out.printf("Cliente: " + cliente.getId().toString()+ " - " + cliente.getNome()+"\n");
                 }
             
-            System.out.printf("\n\nTeste DAO Especifico.\n\n");
+            System.out.printf("\n\nTeste DAO Especifico - Busca Por Nome.\n\n");
             
             List<Cliente> listaCliente = cdao.buscaPorNome("Teste");
                 for (Cliente cliente: listaCliente){
                     System.out.printf("Cliente: " + cliente.getId().toString()+ " - " + cliente.getNome() + "\n");
-                }
+            }
             
+            System.out.printf("\n\nTeste DAO Especifico - Busca Por Data.\n\n");
+            
+            //Passar parametro para a data para expecificar a data
+           Date dataCadastro = new Date(); 
+            listaCliente = cdao.buscaPorDataCadastro(dataCadastro);
+                for (Cliente cliente: listaCliente){
+                    System.out.printf("Cliente: " + cliente.getId().toString()+ " - " + cliente.getNome() + " - " + cliente.getDataCadastro()+"\n");
+            }
             
             //dao.remover(c)
         } finally {

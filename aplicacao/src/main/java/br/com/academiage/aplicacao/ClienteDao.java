@@ -7,6 +7,8 @@ package br.com.academiage.aplicacao;
 
 import br.com.academiage.entidade.Cliente;
 import br.com.academiage.util.JpaUtil;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -32,5 +34,14 @@ public class ClienteDao extends Dao{
                        " c WHERE c.nome = :p_nome").setParameter("p_nome", nome).getResultList();
     }
     
+     public List<Cliente> buscaPorDataCadastro(Date dataCadastro){
+        EntityManager em = JpaUtil.getEntityManager();
+        
+        return em.createQuery("SELECT c FROM "+
+                       Cliente.class.getName()+
+                       " c WHERE c.dataCadastro = :data")
+                       .setParameter("data", dataCadastro)
+                       .getResultList();
+    }
     
 }
