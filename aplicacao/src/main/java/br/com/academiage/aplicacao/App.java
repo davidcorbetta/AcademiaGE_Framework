@@ -15,6 +15,7 @@ public class App
     
         try{
             Dao dao = new Dao(Cliente.class);
+            ClienteDao cdao = new ClienteDao(Cliente.class);
 
             Cliente c = new Cliente("Teste");
             
@@ -26,12 +27,18 @@ public class App
             
             System.out.printf("Cliente: " + c.getId().toString()+ " - " + c.getNome());
             
-           List<Cliente> clist = dao.buscaTodos();
-           
+            List<Cliente> clist = dao.buscaTodos();
                 for (Cliente cliente: clist){
                      System.out.printf("Cliente: " + cliente.getId().toString()+ " - " + cliente.getNome()+"\n");
                 }
-                   
+            
+            System.out.printf("\n\nTeste DAO Especifico.\n\n");
+            
+            List<Cliente> listaCliente = cdao.buscaPorNome("Teste");
+                for (Cliente cliente: listaCliente){
+                    System.out.printf("Cliente: " + cliente.getId().toString()+ " - " + cliente.getNome() + "\n");
+                }
+            
             
             //dao.remover(c)
         } finally {
