@@ -1,4 +1,4 @@
-package br.com.academiage;
+package br.com.academiage.aplicacao;
 
 /**
  * Hello world!
