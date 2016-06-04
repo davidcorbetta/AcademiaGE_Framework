@@ -6,6 +6,7 @@
 package br.com.academiage.aplicacao;
 
 import br.com.academiage.util.JpaUtil;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -62,6 +63,12 @@ public class Dao<T> {
        return (T) em.find(this.classePersistente, id);
     }
     
+    public List<T> buscaTodos(){
+        EntityManager em = JpaUtil.getEntityManager();
+        
+        //Retorna o objeto com a lista .getResultList retorna uma lista generica com os valores.
+        return (List<T>) em.createQuery("SELECT c FROM " + this.classePersistente.getName() + " c").getResultList();
+    }
     
     
 }

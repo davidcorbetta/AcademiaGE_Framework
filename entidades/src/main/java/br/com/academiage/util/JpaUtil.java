@@ -15,6 +15,7 @@ import javax.persistence.Persistence;
 public class JpaUtil {
     private static EntityManagerFactory emf;
     
+    //Cria um construtir e diz para deixar o objeto em memoria
     static{
         emf = Persistence.createEntityManagerFactory("Config");
     }
