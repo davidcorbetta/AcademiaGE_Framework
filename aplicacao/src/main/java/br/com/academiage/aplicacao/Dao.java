@@ -14,9 +14,15 @@ import javax.persistence.EntityTransaction;
  * @author david
  */
 public class Dao<T> {
-
+    
+    private Class<?> classePersistente;
+    
     public Dao() {
         
+    }
+    
+    public Dao(Class<?> classePersistente){
+        this.classePersistente = classePersistente;
     }
     
     public void salvar(T entidade){
@@ -46,6 +52,16 @@ public class Dao<T> {
         
         em.close();
     }
+    
+    public T buscaPorID(Long id){
+       EntityManager em = JpaUtil.getEntityManager();
+       
+       //Instancia e retorna um objeto.
+       
+       //Dessa forma faz um where em uma chave primaria
+       return (T) em.find(this.classePersistente, id);
+    }
+    
     
     
 }
