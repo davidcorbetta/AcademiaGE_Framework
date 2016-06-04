@@ -32,5 +32,18 @@ public class Dao<T> {
         em.close();
     }
     
+    public void remover(T entidade){
+        EntityManager em = JpaUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
+        tx.begin();
+        
+        em.remove(entidade);
+        
+        tx.commit();
+        
+        em.close();
+    }
+    
     
 }
